@@ -38,7 +38,7 @@ export const sendMessage = async (req, res) => {
 
 export const getMessage = async (req, res) => {
     try {
-        kjhghjkhhjj
+        kjhghjkhhj
         const {id:receiverId} =req.params;
         const senderId=req.user._id;
         const conversation = await Conversation.findOne({   
