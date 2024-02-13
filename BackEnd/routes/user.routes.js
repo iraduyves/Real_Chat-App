@@ -4,6 +4,6 @@ import {getUsersForsidebar} from '../controllers/user.controller.js'
 
 const router = express.Router()
 
-// router.get('/:id', protectRoute,getUserForsidebar)
+router.get('/', protectRoute,getUsersForsidebar)
 
 export default router
