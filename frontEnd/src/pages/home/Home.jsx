@@ -1,4 +1,4 @@
-import Sidebar from "../../component/sidebar/sidebar/Sidebar"
+import Sidebar from "../../component/sidebar/Sidebar"
 
 
 function Home() {
