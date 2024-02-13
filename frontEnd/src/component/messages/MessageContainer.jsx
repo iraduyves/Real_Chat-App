@@ -26,7 +26,7 @@ function MessageContainer() {
 
   )
 }
-hxzg
+hxz
 export default MessageContainer
 
 const NoChatSelected = ( ) =>{
