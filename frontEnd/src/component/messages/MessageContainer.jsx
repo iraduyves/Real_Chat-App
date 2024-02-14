@@ -23,7 +23,7 @@ function MessageContainer() {
        </>
       )}
     </div>
-njkj
+nj
   )
 }
 export default MessageContainer
