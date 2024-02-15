@@ -1,20 +1,62 @@
-import { useState } from "react"
-
+import { useState } from "react";
+import toast from "react-hot-toast";
 
 const UseSignup = () => {
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(false);
 
-    const signup = async({fullName,username,passeord,confirmPassword,gender}) => {
-        const sucess = handleInputErrors({fullName,username,passeord,confirmPassword,gender})
-        if(sucess) return;
+    const signup = async ({ fullName, username, password, confirmPassword, gender }) => {
+        const success = handleInputErrors({ fullName, username, password, confirmPassword, gender });
+        if (!success) {
+            setLoading(false); // Ensure loading state is updated even if validation fails
+            return;
+        }
+
+        setLoading(true);
+        try {
+            const res = await fetch("/api/auth/signup", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ fullName, username, password, gender }),
+            });
+
+            if (!res.ok) {
+                throw new Error("Failed to sign up.");
+            }
+
+            const data = await res.json();
+            console.log("data:", data);
+            toast.success("Signup successful.");
+        } catch (error) {
+            toast.error("An error occurred in the signup process.");
+            console.error("Error:", error.message);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    // Return loading and signup functions from the component
+    return { loading, signup };
+};
+
+export default UseSignup;
+
+function handleInputErrors({ fullName, username, password, confirmPassword, gender }) {
+    let hasError = false;
+
+    if (!fullName || !username || !password || !confirmPassword || !gender) {
+        toast.error("Please fill all fields.");
+        hasError = true;
+    }
+    if (password !== confirmPassword) {
+        toast.error("Passwords do not match.");
+        hasError = true;
+    }
+    if (password.length < 6) {
+        toast.error("Password must be at least 6 characters.");
+        hasError = true;
     }
 
-}
-export default UseSignup
-
-function handleInputErrors({fullName,username,passeord,confirmPassword,gender}) {
-    if(!fullName || !username ||!passeord ||!confirmPassword ||!gender) {
-        alert("All fields are required")
-        return true
-    }
+    return !hasError;
 }
