@@ -4,37 +4,40 @@ import toast from "react-hot-toast";
 const UseSignup = () => {
     const [loading, setLoading] = useState(false);
 
-    const signup = async ({ fullName, username, password, confirmPassword, gender }) => {
-        const success = handleInputErrors({ fullName, username, password, confirmPassword, gender });
-        if (!success) {
-            setLoading(false); // Ensure loading state is updated even if validation fails
-            return;
+    const signup = async ({ fullname, username, password, confirmPassword, gender }) => {
+    const success = handleInputErrors({ fullName: fullname, username: username, password: password, confirmPassword: confirmPassword, gender: gender });
+    if (!success) {
+        setLoading(false); // Ensure loading state is updated even if validation fails
+        return;
+    }
+
+    setLoading(true);
+    try {
+        const res = await fetch("/api/auth/signup", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ fullName: fullname, userName: username, password: password, confirmPassword: confirmPassword, gender: gender }),
+        });
+
+        if (!res.ok) {
+            throw new Error("Failed to sign up.");
         }
 
-        setLoading(true);
-        try {
-            const res = await fetch("/api/auth/signup", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({ fullName, username, password, gender }),
-            });
+        const data = await res.json();
 
-            if (!res.ok) {
-                throw new Error("Failed to sign up.");
-            }
-
-            const data = await res.json();
-            console.log("data:", data);
-            toast.success("Signup successful.");
-        } catch (error) {
-            toast.error("An error occurred in the signup process.");
-            console.error("Error:", error.message);
-        } finally {
-            setLoading(false);
+        if (data.error){
+            throw new Error(data.error);
         }
-    };
+        console.log("data:", data);
+        toast.success("Signup successful.");
+    } catch (error) {
+        toast.error("An error occurred in the signup process.");
+    } finally {
+        setLoading(false);
+    }
+};
 
     // Return loading and signup functions from the component
     return { loading, signup };
