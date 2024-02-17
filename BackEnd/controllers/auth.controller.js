@@ -6,11 +6,15 @@ import generateTokenAndSetCookies from '../utils/generateToken.js';
 
 export const signUp = async (req, res) => {
     try {
-        const { fullName, userName, password, confirmpassword, gender } = req.body;
-
-        // Check if passwords match and meet minimum length requirement
-        if (password !== confirmpassword || password.length < 6) {
-            return res.status(400).json({ error: "Passwords must match and have a minimum length of 6 characters" });
+        const { fullName, userName, password, confirmPassword, gender } = req.body;
+       console.log({ fullName, userName, password, confirmPassword, gender });
+        // Check if passwords  meet minimum length requirement
+        if ( password.length < 6) {
+            return res.status(400).json({ error: "Passwords must have a minimum length of 6 characters" });
+        }
+        // Check if passwords match 
+        if (password !== confirmPassword ) {
+            return res.status(400).json({ error: "Passwords must match " });
         }
 
         // Check if username already exists
