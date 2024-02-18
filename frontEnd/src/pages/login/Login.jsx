@@ -38,7 +38,7 @@ function Login() {
                         <span className="text-base label-text">Password</span>
                     </label>
                     <input 
-                     type="passsword" 
+                     type="password" 
                      placeholder="Enter password" 
                      className="w-full input input-bodered h-10" 
                      value={password}
