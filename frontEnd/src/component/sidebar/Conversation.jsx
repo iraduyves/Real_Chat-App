@@ -4,7 +4,6 @@ import useConversation from "../../Store/UseContext";
 function Conversation({conversation,imoji,lastIdx}) {
 
   const {selectedConversation,setSelectedConversation} = useConversation();
-
   const isSelected =selectedConversation?._id === conversation._id;
 
   return (
