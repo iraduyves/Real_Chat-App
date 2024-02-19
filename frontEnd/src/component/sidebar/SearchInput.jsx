@@ -16,6 +16,7 @@ function SearchInput() {
       toast.error("Please enter atleast 3 characters")
       return;
     } 
+    
     else{
       toast.error("NO SUCH CONVERSATION FOUND")
     }
@@ -25,7 +26,7 @@ function SearchInput() {
       setSelectedConversation(conversation)
       setSearch('')
     }
-    
+
   }
   return (
     <>
