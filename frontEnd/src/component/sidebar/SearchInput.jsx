@@ -1,6 +1,5 @@
 import { IoSearchSharp } from "react-icons/io5";
 
-
 function SearchInput() {
   return (
     <>
