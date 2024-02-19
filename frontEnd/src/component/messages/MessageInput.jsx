@@ -12,7 +12,7 @@ function MessageInput() {
     if(!message) return;
     await sendMessage(message);
     setMessage("")
-    console.log("hello");
+
   }
   return (
     <form className="px-4 my-3" onSubmit={handleSubmit}>
