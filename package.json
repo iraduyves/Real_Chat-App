@@ -19,6 +19,7 @@
     "jsonwebtoken": "^9.0.2",
     "mogoose": "^0.0.1-security",
     "mongoose": "^8.1.2",
+    "padzeros": "^0.2.2",
     "socket.io": "^4.7.4",
     "zustand": "^4.5.1"
   },
