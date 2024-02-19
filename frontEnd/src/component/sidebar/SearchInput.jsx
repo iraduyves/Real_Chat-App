@@ -25,6 +25,7 @@ function SearchInput() {
       setSelectedConversation(conversation)
       setSearch('')
     }
+    
   }
   return (
     <>
