@@ -7,7 +7,6 @@ const useSendMessages=()=> {
     const [loading, setLoading] = useState(false);
     const {selectedConversation, messages,setMessages} = useConversation();
 
-    console.log("slected",selectedConversation);
 
      const sendMessage = async (message) => {
         setLoading(true);
