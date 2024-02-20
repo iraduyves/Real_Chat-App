@@ -26,8 +26,12 @@ export const sendMessage = async (req, res) => {
      if(newMessage){
         conversation.message.push(newMessage._id);
      }
+     
+     newMessage.save()
+     conversation.save()
 
-    await Promise.message.push(conversation.save(), newMessage.save());
+    //  await Promise.message.push(conversation.save(), newMessage.save());
+     console.log("hy");
 
      res.status(200).json(newMessage);
    }
