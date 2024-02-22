@@ -7,15 +7,15 @@ import connectToMongoDB from './db/connectToMongoDB.js';
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
 import morgan from 'morgan';
+import {app,server} from './socket/Socket.js';
 
 
-const app = express();
 
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cookieParser());
-app.use(morgan("dev"))
+// app.use(morgan("dev"))
 
 
 
@@ -28,7 +28,7 @@ app.get('/', (req, res) => {
 app.use('/api/auth',authRoutes)
 app.use('/api/messages',messageRoutes)
 app.use('/api/users',userRoutes)
-app.listen(PORT, () => {
+server.listen(PORT, () => {
     connectToMongoDB();
     console.log(`Server is running on port ${PORT}`)
 })
