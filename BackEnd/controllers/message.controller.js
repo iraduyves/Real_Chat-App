@@ -61,7 +61,6 @@ export const getMessage = async (req, res) => {
         console.log("Error in getMessage middleware:", error.message)
         res.status(500).json({ error: "Internal server error" })
     }
-    
-    
+
 }
 
