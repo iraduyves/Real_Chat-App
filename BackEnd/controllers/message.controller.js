@@ -39,7 +39,7 @@ export const sendMessage = async (req, res) => {
     
    }
 }
-jkdsbsfjkwehbsndvjhd
+jkdsbsfjkwehbsndvjh
 export const getMessage = async (req, res) => {
 
     try {
