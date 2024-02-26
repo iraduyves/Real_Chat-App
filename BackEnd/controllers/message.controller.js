@@ -39,8 +39,7 @@ export const sendMessage = async (req, res) => {
     
    }
 }
-jkdsbsfjkwehbsnd
-export const getMessage = async (req, res) => {
+jkdsbsfjkwehbsnexport const getMessage = async (req, res) => {
 
     try {
         const {id:receiverId} =req.params;
